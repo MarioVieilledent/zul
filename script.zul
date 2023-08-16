@@ -1,0 +1,88 @@
+// In zul, every declaration is a module
+// A module has 0 to n parameters and returns a value
+
+/* General syntax to declare a module
+moduleName: returnType = (param1: type, param2: type) => {
+    otherModule definitions
+    some expression returning value of type specified or inferred
+}
+*/
+
+// Every peace of code is an expression that returns a value
+// A module declaration returns the "declare" type
+@typeOf(thing = 7); // "declare"
+
+// Constants, shortest form of module syntax
+
+a: string = "Hello";
+b = "world!"; // Supports type inference
+b: int = 5; // one type for integers
+c: float = 3.1416;
+d: bool = (true or false) xor not true; // no &&, || or ! operators
+
+a ++ " " ++ b; // "Hello world!"
+
+// Single line many declarations
+e = 100; f = e * _n; g = void;
+
+// Long module syntax for constants
+// is a module that doesn't take any parameters and return a constant value
+longConst: int = () => {
+    3;
+};
+
+// Functions
+
+add = (a: int, b: int) => {
+    a + b; // No return keyword, instead,
+    // the last expression in the function scope is the returned value
+};
+
+// Short function can be defined with the _ syntax
+// it allows developer to not write in params inclosed in parenthesis as well as the arrow syntax =>
+// (_a * _b) / 2 is equivalent of (a: int, b: int) => (a * b) / 2
+concatenateStrings = _a ++ _b;
+factorial = i <= ? 1 : _n * factorial(_n - 1);
+
+// Classes
+
+Student = (name: string, age: int) => {
+    name = name;
+    age = age;
+
+    getName = this.name; // this to access object properties
+    setName = self.name = _newName; // self to mutate object properties
+    // equal symbol is here a mutation operand rather than module declaration
+    // self is the only way to mutate values in Zul
+
+    self; // We want to return a mutable reference of the object to use it as objects
+};
+
+// Object instanciation
+
+s1 = Student("Albert", 32); // The self; expression at the very end of Student scope returns the object
+s1 changeName "Alma"; // Is equivalent to the dot syntax s1.changeName("Alma");
+s1 getName; // Expression without capture call the print function
+
+// Mutable variable
+
+// Need a class 
+Mutable = (c: int) => {
+    val: int = c;
+    mut = self.int = _newVal;
+    apply = this.val;
+    self;
+};
+variable = Mutable(int); // Object creation
+variable mut 5;
+variable(); // 5
+
+// Mutable variable helper
+
+&d = 12; d; // 12
+*d *= 2; d; // 24
+
+&e: string; e; // ""
+*e = "Hello"; e; // "Hello"
+
+// Arrays
