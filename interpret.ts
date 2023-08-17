@@ -27,7 +27,11 @@ export function interpret(rawScript: string): any {
         }));
         // Is an expression
       } else {
-        console.log(evaluate(line));
+        try {
+          console.log(evaluate(line));
+        } catch (e) {
+          
+        }
       }
   });
 

@@ -1,7 +1,6 @@
-export function evaluate(script: string): string {
-    let level = 0;
-    for (let i = 0; i < script.length; i++) {
+import * from "./types";
 
-    }
+export function evaluate(script: string): Value {
+    return null;
 }
-// ((a + 1 / 1) + 4 * (767))
+// ((a + 1 / 1) + 4 * (767 + someFunction(someOtherFunc() + 4)) * 4) + 9
