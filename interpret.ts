@@ -9,12 +9,13 @@ export function interpret(rawScript: string): any {
 
   uncommentedScript.split("\n").forEach((line) => {
     line = line.trim(); // Trims the line
-      var matches, output: any = [];
+      let matches: any = [];
+      let output: any = [];
       while (matches = regex.MATCH_DECLARATION.exec(line)) {
         output.push(matches);
       }
       // Is a declaration
-      if (output.len > 0) {
+      if (output.length > 0) {
         output.forEach((declaration => {
           const decName = declaration[1];
           const decType = declaration[2];
@@ -28,9 +29,10 @@ export function interpret(rawScript: string): any {
         // Is an expression
       } else {
         try {
-          console.log(evaluate(line));
+          console.log(line);
+          // console.log(eval(line));
         } catch (e) {
-          
+          console.error(e);
         }
       }
   });
